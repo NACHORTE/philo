@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:09 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/08 14:28:09 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/09 12:00:53 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -224,7 +224,7 @@ int	main(int argc, char **argv)
 		params.must_eat = ft_atoi(argv[5]);
 	else
 		params.must_eat = 0;
-	if (params.n_philos <= 0)
+	if (params.n_philos <= 0 || params.t_die < 0 || params.t_eat < 0 || params.t_sleep < 0 || params.must_eat < 0)
 	{
 		printf("Please enter a correct number of philosophers.\n");
 		return (0);

@@ -6,12 +6,12 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/07 21:36:52 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:52:14 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
-# define PHILO_X
+# define PHILO_H
 # include <stdio.h>
 # include <string.h>
 # include <stdlib.h>
