@@ -6,13 +6,13 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:09 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/07 16:38:10 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/08 14:28:09 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long	gettime(void)
+unsigned long	gettime(void)
 {
 	struct timeval	time;
 
@@ -29,21 +29,21 @@ void	*left_to_die(void *params)
 	int				i;
 
 	data = (t_params *)params;
-	while (data->shared_data->death == 0 && data->full == 0)		//mientras que no haya comido todas las veces o siga vivo
-	{
+	//while (data->shared_data->death == 0 && data->full == 0)		//mientras que no haya comido todas las veces o siga vivo
+	//{
 		//gettimeofday(&time_1, NULL);
-		data->reset = 0;
-		while (data->reset == 0 && data->shared_data->death == 0 && data->full == 0)
+	//	data->reset = 0;
+		while (/*data->reset == 0 &&*/ data->shared_data->death == 0 && data->full == 0)
 		{
 			//gettimeofday(&time_2, NULL);
 			//diff = ((time_2.tv_sec * 1000) + (time_2.tv_usec / 1000)) - ((time_1.tv_sec * 1000) + (time_1.tv_usec / 1000));
-			if (gettime() >= data->death_time && data->reset == 0)
+			if (gettime() >= data->death_time /*&& data->reset == 0*/)
 			{
 				pthread_mutex_lock(&data->shared_data->death_lock);
 				data->dead = 1;
 				if (data->shared_data->death == 0)
 				{
-					printf("%ldms %d died\n", gettime() - data->shared_data->start,data->id);
+					printf("%lu %d died\n", gettime() - data->shared_data->start,data->id);
 					data->shared_data->death = data->id;
 				}
 				if (data->shared_data->death != data->id)
@@ -52,16 +52,16 @@ void	*left_to_die(void *params)
 					break;
 				}
 				pthread_mutex_unlock(&data->shared_data->death_lock);
-				//printf("%ld %d\n", diff, data->id);
+				//printf("%lu %d\n", diff, data->id);
 			}
 			usleep(10);
 		}
 		/*if (data->shared_data->death == 0)
 			printf("Reset time philo %d.\n", data->id);*/
-	}
+	//}
 	if (data->shared_data->death == data->id)
 	{
-		//printf("%ldms %d died\n", gettime() - data->shared_data->start,data->id);
+		//printf("%lums %d died\n", gettime() - data->shared_data->start,data->id);
 		//pthread_mutex_unlock(&data->shared_data->death_lock);
 		i = 0;
 		while (i < data->n_philos)
@@ -104,7 +104,7 @@ void	*alive(void *params)
 	if ((data->id % 2) == 0)
 		//usleep(data->t_eat * 1000 * 0.9);
 		usleep(100);
-	//printf("philo %d alive %ldms\n", id, gettime() - data->shared_data->start);
+	//printf("philo %d alive %lums\n", id, gettime() - data->shared_data->start);
 	while(data->shared_data->death == 0 && i < data->must_eat)								//cada filosofo intenta coger los dos tenedores y los bloquea, come y los desbloquea
 	{
 		while(1)
@@ -116,7 +116,7 @@ void	*alive(void *params)
 			break;
 		}
 		shared_data->forks[id-1] = id;
-		printf("%ldms %d has taken a fork\n", gettime() - data->shared_data->start, id);
+		printf("%lu ms %d has taken a fork\n", gettime() - data->shared_data->start, id);
 		if (data->n_philos == 1)
 			usleep(data->t_die * 1000 + 1000);
 		if (id == data->n_philos)
@@ -153,36 +153,36 @@ void	*alive(void *params)
 			}
 			shared_data->forks[id] = id;
 		}
-		printf("%ldms %d has taken a fork\n", gettime() - data->shared_data->start, id);
+		printf("%lu ms %d has taken a fork\n", gettime() - data->shared_data->start, id);
 		data->death_time = data->t_die + gettime();
-		printf("%ldms %d is eating\n", gettime() - data->shared_data->start, id);
+		printf("%lu ms %d is eating\n", gettime() - data->shared_data->start, id);
 		data->reset = 1;
 		if (data->must_eat != 0)
 			i++;
 		usleep(data->t_eat * 1000);
 		//data->reset = 1;
 		/*gettimeofday(&data->time, NULL);
-		printf("%ldms %d has eaten.\n", data->time.tv_usec, id);*/
+		printf("%lums %d has eaten.\n", data->time.tv_usec, id);*/
 		pthread_mutex_unlock(&shared_data->shared_mutex[id-1]);
-		printf("%ldms %d droped right fork\n", gettime() - data->shared_data->start, id);
+		printf("%lu ms %d droped right fork\n", gettime() - data->shared_data->start, id);
 		shared_data->forks[id-1] = 0;
 		if (id == data->n_philos)
 		{
 			pthread_mutex_unlock(&shared_data->shared_mutex[0]);
 			shared_data->forks[0] = 0;
-			printf("%ldms %d droped left fork\n", gettime() - data->shared_data->start, id);
+			printf("%lu ms %d droped left fork\n", gettime() - data->shared_data->start, id);
 		}
 		else
 		{
 			pthread_mutex_unlock(&shared_data->shared_mutex[id]);
 			shared_data->forks[id] = 0;
-			printf("%ldms %d droped left fork\n", gettime() - data->shared_data->start, id);
+			printf("%lu ms %d droped left fork\n", gettime() - data->shared_data->start, id);
 		}
 		if (data->shared_data->death != 0)
 			break;
 		if (i == data->must_eat)
 			data->full = 1;
-		printf("%ldms %d is sleeping.\n", gettime() - data->shared_data->start, id);
+		printf("%lu ms %d is sleeping.\n", gettime() - data->shared_data->start, id);
 		usleep(data->t_sleep * 1000);
 		break;
 		}
