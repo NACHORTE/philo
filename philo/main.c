@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:09 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/09 12:00:53 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/25 13:40:39 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*left_to_die(void *params)
 	//struct timeval	time_1;
 	//struct timeval	time_2;
 	//long			diff;
-	int				i;
+	//int				i;
 
 	data = (t_params *)params;
 	//while (data->shared_data->death == 0 && data->full == 0)		//mientras que no haya comido todas las veces o siga vivo
@@ -59,7 +59,7 @@ void	*left_to_die(void *params)
 		/*if (data->shared_data->death == 0)
 			printf("Reset time philo %d.\n", data->id);*/
 	//}
-	if (data->shared_data->death == data->id)
+	/*if (data->shared_data->death == data->id)
 	{
 		//printf("%lums %d died\n", gettime() - data->shared_data->start,data->id);
 		//pthread_mutex_unlock(&data->shared_data->death_lock);
@@ -74,7 +74,7 @@ void	*left_to_die(void *params)
 			i++;
 		}
 		//data->shared_data.shared_mutex
-	}
+	}*/
 	return ((void *)0);
 }
 
@@ -118,7 +118,11 @@ void	*alive(void *params)
 		shared_data->forks[id-1] = id;
 		printf("%lu ms %d has taken a fork\n", gettime() - data->shared_data->start, id);
 		if (data->n_philos == 1)
+		{
+			pthread_mutex_unlock(&shared_data->shared_mutex[id-1]);
 			usleep(data->t_die * 1000 + 1000);
+			break;
+		}
 		if (id == data->n_philos)
 		{
 			/*if (shared_data->forks[0] != 0)
@@ -189,6 +193,7 @@ void	*alive(void *params)
 		/*if (data->must_eat == 0)
 			i = -1;*/
 	}
+	pthread_join(counter, NULL);
 	return ((void *)0);
 }
 
