@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 19:35:28 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/27 19:51:00 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:57:59 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ int	init_threads(t_params *params, \
 	{
 		params->id = i + 1;
 		params->reset = 0;
-		params->dead = 0;
 		philos_data[i] = *params;
 		if (pthread_create(&philos_thread[i], NULL, alive, &philos_data[i]))
 			return (0);

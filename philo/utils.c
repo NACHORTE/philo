@@ -6,11 +6,19 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 13:19:48 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/27 19:31:32 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:56:07 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+unsigned long	gettime(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+}
 
 static int	ft_isspace(char c)
 {
