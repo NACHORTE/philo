@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:09 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/27 19:42:46 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:45:33 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,20 +251,6 @@ void	*alive(void *params)
 	pthread_mutex_destroy(&data->lock_philo);
 	return ((void *)0);
 }
-
-/*int	looking(void *)
-{
-	t_shared	*public;
-	
-	public = (t_shared *)shared_data;
-	while (1)
-	{
-		if (public->death == 1)
-		{
-			
-		}
-	}
-}*/
 
 int	main(int argc, char **argv)
 {

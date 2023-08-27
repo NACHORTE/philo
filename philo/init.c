@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 19:35:28 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/27 19:41:02 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/27 19:51:00 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,12 +91,12 @@ int	init_prog(t_params *params, \
 void	free_mem(t_params *params, \
 	t_params **philos_data, pthread_t **philos_thread)
 {
+	mutex_destroy(params);
 	free(params->shared_data->forks);
 	free(params->shared_data->shared_mutex);
 	free(params->shared_data);
 	free(*philos_data);
 	free(*philos_thread);
-	mutex_destroy(params);
 }
 
 void	mutex_destroy(t_params *params)
