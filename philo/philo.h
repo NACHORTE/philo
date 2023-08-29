@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/27 20:20:09 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:20:54 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,5 +59,16 @@ int				init_prog(t_params *params, \
 void			*alive(void *params);
 int				check_death(t_params *data);
 int				check_full(t_params *data);
+int				take_rfork(t_params *data, t_shared *shared_data, int id);
+int				take_lfork(t_params *data, t_shared *shared_data, int id);
+void			eat(t_params *data, int *i, int id);
+int				drop_forks(t_params *data, t_shared *shared_data, int id);
+void			go_sleep(t_params *data, int i, int id);
+void			*left_to_die(void *params);
+void			init_routine(t_params *data, int *id, int *i);
+int				someone_died(t_params *data);
+int				routine(t_params *data, t_shared *shared_data, int id, int *i);
+void			*alive(void *params);
+void			mysleep(unsigned long time);
 
 #endif

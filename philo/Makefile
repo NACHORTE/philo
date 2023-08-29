@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 16:06:05 by iortega-          #+#    #+#              #
-#    Updated: 2023/08/29 14:36:49 by iortega-         ###   ########.fr        #
+#    Updated: 2023/08/29 16:52:09 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,9 @@ STANDARD_FLAGS	= -Wall -Wextra -Werror -fsanitize=thread
 SRCS			= main.c \
 				init.c \
 				checkers.c \
+				routine_control.c \
+				eat.c \
+				forks.c \
 				utils.c
 
 OBJS			= $(SRCS:.c=.o)
