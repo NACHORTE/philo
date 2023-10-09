@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/29 16:52:30 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/09 12:02:29 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	someone_died(t_params *data)
 
 int	routine(t_params *data, t_shared *shared_data, int id, int *i)
 {
+	printf("%lums %d is thinking\n", gettime() - data->shared_data->start, id);
 	if (!take_rfork(data, shared_data, id))
 		return (0);
 	if (!take_lfork(data, shared_data, id))

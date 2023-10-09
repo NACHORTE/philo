@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:49:55 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/29 16:53:08 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/09 11:32:07 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,18 @@ int	take_rfork(t_params *data, t_shared *shared_data, int id)
 static int	last_philo(t_params *data, t_shared *shared_data, int id)
 {
 	pthread_mutex_lock(&shared_data->shared_mutex[0]);
+	pthread_mutex_lock(&data->lock_philo);
 	pthread_mutex_lock(&data->shared_data->death_lock);
 	if (data->shared_data->death != 0)
 	{
 		pthread_mutex_unlock(&shared_data->shared_mutex[0]);
 		pthread_mutex_unlock(&shared_data->shared_mutex[id - 1]);
+		pthread_mutex_unlock(&data->lock_philo);
 		pthread_mutex_unlock(&data->shared_data->death_lock);
 		return (0);
 	}
 	pthread_mutex_unlock(&data->shared_data->death_lock);
+	pthread_mutex_unlock(&data->lock_philo);
 	return (1);
 }
 
@@ -62,15 +65,18 @@ int	take_lfork(t_params *data, t_shared *shared_data, int id)
 	else
 	{
 		pthread_mutex_lock(&shared_data->shared_mutex[id]);
+		pthread_mutex_lock(&data->lock_philo);
 		pthread_mutex_lock(&data->shared_data->death_lock);
 		if (data->shared_data->death != 0)
 		{
 			pthread_mutex_unlock(&shared_data->shared_mutex[id]);
 			pthread_mutex_unlock(&shared_data->shared_mutex[id - 1]);
+			pthread_mutex_unlock(&data->lock_philo);
 			pthread_mutex_unlock(&data->shared_data->death_lock);
 			return (0);
 		}
 		pthread_mutex_unlock(&data->shared_data->death_lock);
+		pthread_mutex_unlock(&data->lock_philo);
 	}
 	return (1);
 }
