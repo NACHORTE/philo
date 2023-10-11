@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/09 12:02:29 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:51:00 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ int	routine(t_params *data, t_shared *shared_data, int id, int *i)
 		return (0);
 	if (!take_lfork(data, shared_data, id))
 		return (0);
-	printf("%lums %d has taken L fork\n", \
-		gettime() - data->shared_data->start, id);
 	eat(data, i, id);
 	if (!drop_forks(data, shared_data, id))
 		return (0);

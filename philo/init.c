@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 19:35:28 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/27 19:57:59 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/11 15:47:25 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	init_threads(t_params *params, \
 		if (pthread_create(&philos_thread[i], NULL, alive, &philos_data[i]))
 			return (0);
 		i++;
-		usleep(60);
+		usleep(1);
 	}
 	return (1);
 }
