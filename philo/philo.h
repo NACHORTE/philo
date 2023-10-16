@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/29 16:20:54 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/14 23:00:27 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef struct s_shared {
 	int				death;
 	unsigned long	start;
 	pthread_mutex_t	death_lock;
+	pthread_mutex_t	print;
 	pthread_mutex_t	*shared_mutex;
 }	t_shared;
 
@@ -50,14 +51,14 @@ int				init_data(t_params *params, \
 	t_params **philos_data, pthread_t **philos_thread);
 int				init_threads(t_params *params, \
 	t_params *philos_data, pthread_t	*philos_thread);
-void			mutex_destroy(t_params *params);
+void			mutex_destroy(t_params *params, t_params *philos_data);
 void			free_mem(t_params *params, \
 	t_params **philos_data, pthread_t **philos_thread);
 unsigned long	gettime(void);
 int				init_prog(t_params *params, \
 	t_params **philos_data, pthread_t **philos_thread);
 void			*alive(void *params);
-int				check_death(t_params *data);
+int				check_death(t_params *data, int *ate);
 int				check_full(t_params *data);
 int				take_rfork(t_params *data, t_shared *shared_data, int id);
 int				take_lfork(t_params *data, t_shared *shared_data, int id);
@@ -70,5 +71,6 @@ int				someone_died(t_params *data);
 int				routine(t_params *data, t_shared *shared_data, int id, int *i);
 void			*alive(void *params);
 void			mysleep(unsigned long time);
+int				is_dead(t_params *data);
 
 #endif

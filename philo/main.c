@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:09 by iortega-          #+#    #+#             */
-/*   Updated: 2023/08/29 16:17:56 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/14 23:03:12 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,38 @@ void	mysleep(unsigned long time)
 		usleep(20);
 }
 
+void *cheking(void *params)
+{
+	t_params *data;
+	int i;
+	int	ate;
+
+	data = (t_params *)params;
+	i = 0;
+	ate = 1;
+	while (1)
+	{
+		if (!check_death(&data[i], &ate))
+			break;
+		i++;
+		if (i == data->n_philos)
+		{
+			if (ate == 1)
+				break;
+			i = 0;
+			ate = 1;
+		}
+		usleep(100);
+	}
+	return ((void *)0);
+}
+
 int	main(int argc, char **argv)
 {
 	t_params	params;
 	t_params	*philos_data;
 	pthread_t	*philos_thread;
+	pthread_t	check;
 
 	philos_data = NULL;
 	philos_thread = NULL;
@@ -33,6 +60,18 @@ int	main(int argc, char **argv)
 		return (0);
 	if (!init_prog(&params, &philos_data, &philos_thread))
 		return (0);
+	pthread_create(&check, NULL, cheking, philos_data);
+	pthread_join(check, NULL);
+	int i = 0;
+	while (i < params.n_philos)
+	{
+		if (pthread_join(philos_thread[i], NULL))
+		{
+			free_mem(&params, &philos_data, &philos_thread);
+			return (0);
+		}
+		i++;
+	}
 	free_mem(&params, &philos_data, &philos_thread);
 	return (0);
 }
