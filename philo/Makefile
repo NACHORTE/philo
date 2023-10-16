@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 16:06:05 by iortega-          #+#    #+#              #
-#    Updated: 2023/10/16 11:22:15 by iortega-         ###   ########.fr        #
+#    Updated: 2023/10/16 11:53:36 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= philo
 
 CC		= gcc
 
-STANDARD_FLAGS	= -Wall -Wextra -Werror #-pthread #-pthread
+STANDARD_FLAGS	= -Wall -Wextra -Werror #-fsanitize=leak #-pthread
 
 SRCS			= main.c \
 				init.c \
@@ -31,8 +31,8 @@ all:			$(NAME)
 $(NAME): $(OBJS)
 				$(CC) $(OBJS) $(STANDARD_FLAGS) -o $(NAME)
 
-$(OBJS): $(SRCS)
-				$(CC) $(STANDARD_FLAGS) -c $(SRCS)
+%.o: %.c
+				$(CC) $(STANDARD_FLAGS) -c $<
 
 clean:
 				rm -rf $(OBJS)

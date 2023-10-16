@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/14 23:00:27 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:41:01 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int				take_lfork(t_params *data, t_shared *shared_data, int id);
 void			eat(t_params *data, int *i, int id);
 int				drop_forks(t_params *data, t_shared *shared_data, int id);
 void			go_sleep(t_params *data, int i, int id);
-void			*left_to_die(void *params);
 void			init_routine(t_params *data, int *id, int *i);
 int				someone_died(t_params *data);
 int				routine(t_params *data, t_shared *shared_data, int id, int *i);

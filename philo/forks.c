@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:49:55 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/14 23:09:11 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:43:38 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	take_rfork(t_params *data, t_shared *shared_data, int id)
 	if (!is_dead(data))
 	{
 		pthread_mutex_lock(&data->shared_data->death_lock);
-		printf("%lums %d has taken R fork\n", \
+		printf("%lu %d has taken a fork\n", \
 			gettime() - data->shared_data->start, id);
 		pthread_mutex_unlock(&data->shared_data->death_lock);
 	}
@@ -74,7 +74,7 @@ static int	last_philo(t_params *data, t_shared *shared_data, int id)
 	if (!is_dead(data))
 	{
 		pthread_mutex_lock(&data->shared_data->death_lock);
-		printf("%lums %d has taken L fork\n", \
+		printf("%lu %d has taken a fork\n", \
 			gettime() - data->shared_data->start, id);
 		pthread_mutex_unlock(&data->shared_data->death_lock);
 	}
@@ -106,7 +106,7 @@ int	take_lfork(t_params *data, t_shared *shared_data, int id)
 		if (!is_dead(data))
 		{
 			pthread_mutex_lock(&data->shared_data->death_lock);
-			printf("%lums %d has taken L fork\n", \
+			printf("%lu %d has taken a fork\n", \
 				gettime() - data->shared_data->start, id);
 			pthread_mutex_unlock(&data->shared_data->death_lock);
 		}

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 20:20:24 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 11:21:56 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:43:56 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	check_death(t_params *data, int *ate)
 		if (data->shared_data->death == 0)
 		{
 			//pthread_mutex_lock(&data->shared_data->death_lock);
-			printf("%lums %d died\n", \
+			printf("%lu %d died\n", \
 				gettime() - data->shared_data->start, data->id);
 			data->shared_data->death = data->id;
 			pthread_mutex_unlock(&data->shared_data->death_lock);
