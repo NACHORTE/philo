@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 20:20:24 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 11:43:56 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:58:32 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	check_death(t_params *data, int *ate)
 		pthread_mutex_lock(&data->shared_data->death_lock);
 		if (data->shared_data->death == 0)
 		{
-			//pthread_mutex_lock(&data->shared_data->death_lock);
 			printf("%lu %d died\n", \
 				gettime() - data->shared_data->start, data->id);
 			data->shared_data->death = data->id;
@@ -31,13 +30,6 @@ int	check_death(t_params *data, int *ate)
 		}
 		else
 			pthread_mutex_unlock(&data->shared_data->death_lock);
-		/*if (data->shared_data->death != data->id)
-		{
-			pthread_mutex_unlock(&data->shared_data->death_lock);
-			//pthread_mutex_unlock(&data->lock_philo);
-			return (0);
-		}*/
-		//pthread_mutex_unlock(&data->lock_philo);
 		return (0);
 	}
 	else
@@ -47,14 +39,6 @@ int	check_death(t_params *data, int *ate)
 
 int	check_full(t_params *data)
 {
-	/*pthread_mutex_lock(&data->shared_data->death_lock);
-	if (data->shared_data->death != 0)
-	{
-		pthread_mutex_unlock(&data->shared_data->death_lock);
-		pthread_mutex_unlock(&data->lock_philo);
-		return (0);
-	}
-	pthread_mutex_unlock(&data->shared_data->death_lock);*/
 	pthread_mutex_lock(&data->lock_philo);
 	if (data->full != 0)
 	{

@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 11:43:43 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:57:39 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 void	init_routine(t_params *data, int *id, int *i)
 {
 	*id = data->id;
-	//pthread_mutex_init(&data->lock_philo, NULL);
-	//data->death_time = data->t_die + gettime();
-	//pthread_create(&data->counter, NULL, left_to_die, data);
 	if (data->must_eat == 0)
 		*i = -100;
 	else
@@ -73,8 +70,5 @@ void	*alive(void *params)
 		if (!someone_died(data))
 			break ;
 	}
-	//if (data->n_philos != 1)
-	//	pthread_join(data->counter, NULL);
-	//pthread_mutex_destroy(&data->lock_philo);
 	return ((void *)0);
 }

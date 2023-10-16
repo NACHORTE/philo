@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 11:41:01 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/16 12:07:11 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct s_shared {
 	int				death;
 	unsigned long	start;
 	pthread_mutex_t	death_lock;
-	pthread_mutex_t	print;
 	pthread_mutex_t	*shared_mutex;
 }	t_shared;
 
@@ -38,7 +37,6 @@ typedef struct s_params {
 	int				reset;
 	int				must_eat;
 	int				full;
-	pthread_t		counter;
 	pthread_mutex_t	lock_philo;
 	struct timeval	time;
 	t_shared		*shared_data;
