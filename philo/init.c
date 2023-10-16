@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/27 19:35:28 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 12:02:20 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:50:40 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ int	init_threads(t_params *params, \
 	while (i < params->n_philos)
 	{
 		params->id = i + 1;
-		params->reset = 0;
 		philos_data[i] = *params;
 		pthread_mutex_init(&philos_data[i].lock_philo, NULL);
 		philos_data[i].death_time = philos_data[i].t_die + gettime();

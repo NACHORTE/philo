@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 12:07:11 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/16 14:50:31 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,9 @@ typedef struct s_params {
 	unsigned long	death_time;
 	int				t_sleep;
 	int				id;
-	int				reset;
 	int				must_eat;
 	int				full;
 	pthread_mutex_t	lock_philo;
-	struct timeval	time;
 	t_shared		*shared_data;
 }	t_params;
 
