@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 11:57:39 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/24 13:00:21 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,10 @@ int	someone_died(t_params *data)
 
 int	routine(t_params *data, t_shared *shared_data, int id, int *i)
 {
-	if (!is_dead(data))
-	{
-		pthread_mutex_lock(&data->shared_data->death_lock);
+	pthread_mutex_lock(&data->shared_data->death_lock);
+	if (data->shared_data->death == 0)
 		printf("%lu %d is thinking\n", gettime() - data->shared_data->start, id);
-		pthread_mutex_unlock(&data->shared_data->death_lock);
-	}
+	pthread_mutex_unlock(&data->shared_data->death_lock);
 	if (!take_rfork(data, shared_data, id))
 		return (0);
 	if (!take_lfork(data, shared_data, id))

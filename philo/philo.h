@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 14:50:31 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/24 12:59:37 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ typedef struct s_shared {
 
 typedef struct s_params {
 	int				n_philos;
-	int				t_die;
-	int				t_eat;
+	long			t_die;
+	long			t_eat;
 	unsigned long	death_time;
-	int				t_sleep;
+	long			t_sleep;
 	int				id;
 	int				must_eat;
 	int				full;
@@ -55,7 +55,6 @@ int				init_prog(t_params *params, \
 	t_params **philos_data, pthread_t **philos_thread);
 void			*alive(void *params);
 int				check_death(t_params *data, int *ate);
-int				check_full(t_params *data);
 int				take_rfork(t_params *data, t_shared *shared_data, int id);
 int				take_lfork(t_params *data, t_shared *shared_data, int id);
 void			eat(t_params *data, int *i, int id);
