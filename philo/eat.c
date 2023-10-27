@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:11:15 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/24 12:59:53 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/27 19:57:33 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	eat(t_params *data, int *i, int id)
 	if (data->shared_data->death == 0)
 		printf("%lu %d is eating\n", gettime() - data->shared_data->start, id);
 	pthread_mutex_unlock(&data->shared_data->death_lock);
-	mysleep(data->t_eat);
+	mysleep((unsigned long) data->t_eat);
 }
 
 void	go_sleep(t_params *data, int i, int id)
@@ -36,5 +36,5 @@ void	go_sleep(t_params *data, int i, int id)
 	if (data->shared_data->death == 0)
 		printf("%lu %d is sleeping\n", gettime() - data->shared_data->start, id);
 	pthread_mutex_unlock(&data->shared_data->death_lock);
-	mysleep(data->t_sleep);
+	mysleep((unsigned long) data->t_sleep);
 }

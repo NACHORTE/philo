@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:09 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/16 12:06:28 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/27 19:25:39 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	mysleep(unsigned long time)
 
 	start = gettime();
 	while (gettime() - start < time)
-		usleep(20);
+		usleep(100);
 }
 
 void	*cheking(void *params)

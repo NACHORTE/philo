@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/24 12:59:37 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/27 19:07:36 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_params {
 	unsigned long	death_time;
 	long			t_sleep;
 	int				id;
-	int				must_eat;
+	long			must_eat;
 	int				full;
 	pthread_mutex_t	lock_philo;
 	t_shared		*shared_data;
@@ -61,7 +61,6 @@ void			eat(t_params *data, int *i, int id);
 int				drop_forks(t_params *data, t_shared *shared_data, int id);
 void			go_sleep(t_params *data, int i, int id);
 void			init_routine(t_params *data, int *id, int *i);
-int				someone_died(t_params *data);
 int				routine(t_params *data, t_shared *shared_data, int id, int *i);
 void			*alive(void *params);
 void			mysleep(unsigned long time);

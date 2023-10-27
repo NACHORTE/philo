@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:14:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/24 13:00:21 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/27 19:59:12 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,11 @@ void	init_routine(t_params *data, int *id, int *i)
 {
 	*id = data->id;
 	if (data->must_eat == 0)
-		*i = -100;
+		*i = -10;
 	else
 		*i = 0;
 	if ((data->id % 2) == 0)
-		mysleep(10);
-}
-
-int	someone_died(t_params *data)
-{
-	pthread_mutex_lock(&data->shared_data->death_lock);
-	if (data->shared_data->death != 0)
-	{
-		pthread_mutex_unlock(&data->shared_data->death_lock);
-		return (0);
-	}
-	pthread_mutex_unlock(&data->shared_data->death_lock);
-	return (1);
+		mysleep((unsigned long) 50);
 }
 
 int	routine(t_params *data, t_shared *shared_data, int id, int *i)
@@ -61,12 +49,18 @@ void	*alive(void *params)
 
 	data = (t_params *)params;
 	shared_data = data->shared_data;
+	i = 0;
 	init_routine(data, &id, &i);
 	while (i < data->must_eat)
 	{
 		routine(data, shared_data, id, &i);
-		if (!someone_died(data))
+		pthread_mutex_lock(&data->shared_data->death_lock);
+		if (data->shared_data->death != 0)
+		{
+			pthread_mutex_unlock(&data->shared_data->death_lock);
 			break ;
+		}
+		pthread_mutex_unlock(&data->shared_data->death_lock);
 	}
 	return ((void *)0);
 }
