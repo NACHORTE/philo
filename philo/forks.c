@@ -6,26 +6,11 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 16:49:55 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/24 13:00:08 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/28 17:46:51 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	is_dead(t_params *data)
-{
-	pthread_mutex_lock(&data->shared_data->death_lock);
-	if (data->shared_data->death > 0)
-	{
-		pthread_mutex_unlock(&data->shared_data->death_lock);
-		return (1);
-	}
-	else
-	{
-		pthread_mutex_unlock(&data->shared_data->death_lock);
-		return (0);
-	}
-}
 
 int	take_rfork(t_params *data, t_shared *shared_data, int id)
 {
