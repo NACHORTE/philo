@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 16:06:05 by iortega-          #+#    #+#              #
-#    Updated: 2023/10/28 11:26:19 by iortega-         ###   ########.fr        #
+#    Updated: 2023/10/28 17:44:53 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= philo
 
 CC		= gcc
 
-STANDARD_FLAGS	= -Wall -Wextra -Werror #-pthread #-pthread
+STANDARD_FLAGS	= -Wall -Wextra -Werror #-fsanitize=leak #-pthread
 
 SRCS			= main.c \
 				init.c \
@@ -22,7 +22,8 @@ SRCS			= main.c \
 				routine_control.c \
 				eat.c \
 				forks.c \
-				utils.c
+				utils.c \
+				memory.c
 
 OBJS			= $(SRCS:.c=.o)
 
