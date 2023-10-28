@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:36:10 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/27 19:07:36 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:06:12 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,6 @@ int				routine(t_params *data, t_shared *shared_data, int id, int *i);
 void			*alive(void *params);
 void			mysleep(unsigned long time);
 int				is_dead(t_params *data);
+int				init_mutex(t_params *params);
 
 #endif

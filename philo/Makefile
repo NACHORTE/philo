@@ -6,7 +6,7 @@
 #    By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/30 16:06:05 by iortega-          #+#    #+#              #
-#    Updated: 2023/10/16 11:53:36 by iortega-         ###   ########.fr        #
+#    Updated: 2023/10/28 11:26:19 by iortega-         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME	= philo
 
 CC		= gcc
 
-STANDARD_FLAGS	= -Wall -Wextra -Werror #-fsanitize=leak #-pthread
+STANDARD_FLAGS	= -Wall -Wextra -Werror #-pthread #-pthread
 
 SRCS			= main.c \
 				init.c \

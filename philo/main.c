@@ -6,7 +6,7 @@
 /*   By: iortega- <iortega-@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/26 12:10:09 by iortega-          #+#    #+#             */
-/*   Updated: 2023/10/27 19:25:39 by iortega-         ###   ########.fr       */
+/*   Updated: 2023/10/28 11:30:03 by iortega-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,22 @@ int	main(int argc, char **argv)
 
 	philos_data = NULL;
 	philos_thread = NULL;
-	if (!valid_params(&params, argc, argv))
-		return (0);
-	if (!init_prog(&params, &philos_data, &philos_thread))
+	if (!valid_params(&params, argc, argv)
+		|| !init_prog(&params, &philos_data, &philos_thread))
 		return (0);
 	cheking(philos_data);
 	i = 0;
 	while (i < params.n_philos)
 	{
-		if (pthread_join(philos_thread[i], NULL))
+		if (pthread_join(philos_thread[i], NULL) != 0)
 		{
+			mutex_destroy(&params, philos_data);
 			free_mem(&params, &philos_data, &philos_thread);
 			return (0);
 		}
 		i++;
 	}
+	mutex_destroy(&params, philos_data);
 	free_mem(&params, &philos_data, &philos_thread);
 	return (0);
 }
